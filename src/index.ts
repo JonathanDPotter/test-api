@@ -1,16 +1,16 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
-const server = express();
-
-const router = express.Router();
-
+const app = express();
 const port = process.env.PORT || 1337;
 
-router.get("/", (req: express.Request, res: express.Response) => {
-  res.json("This works!");
+app.get("/", (_req: Request, res: Response) => {
+  return res.send("Express Typescript on Vercel");
 });
 
-server.listen(port, () => {
-  console.log(`Server listening on port: ${port}`);
-  server.use(router);
-})
+app.get("/ping", (_req: Request, res: Response) => {
+  return res.send("pong 🏓");
+});
+
+app.listen(port, () => {
+  return console.log(`Server is listening on ${port}`);
+});

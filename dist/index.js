@@ -4,14 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const server = (0, express_1.default)();
-const router = express_1.default.Router();
+const app = (0, express_1.default)();
 const port = process.env.PORT || 1337;
-router.get("/", (req, res) => {
-    res.json("This works!");
+app.get("/", (_req, res) => {
+    return res.send("Express Typescript on Vercel");
 });
-server.listen(port, () => {
-    console.log(`Server listening on port: ${port}`);
-    server.use(router);
+app.get("/ping", (_req, res) => {
+    return res.send("pong 🏓");
+});
+app.listen(port, () => {
+    return console.log(`Server is listening on ${port}`);
 });
 //# sourceMappingURL=index.js.map
