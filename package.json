@@ -5,12 +5,13 @@
   "author": "Jonathan <jonathan.d.potter@outlook.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/src/server.js",
+    "build": "yarn clean && tsc && yarn copy-files",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u src/**/*.html src/**/*.css src/**/*.svg src/**/*.ico src/**/*.js dist/",
+    "postinstall": "yarn build",
     "dev": "nodemon src/server.ts",
-    "start": "node dist/server.js",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist-dev": "nodemon dist/src/server.js"
   },
   "pre-commit": [
     "ts.check",
@@ -25,9 +26,10 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^18.16.2",
+    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.22",
     "pre-commit": "^1.2.2",
-    "rimraf": "^5.0.0",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
